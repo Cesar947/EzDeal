@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Entity.Usuario>
+@{
+    ViewBag.Title = "IndexCliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>IndexCliente</h2>
+
+<p>
+
+    @Html.ActionLink("Nuevo Cliente", "CreateCliente")
+
+</p>
+
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.codigoUsuario)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.codigoDistrito.nombre)
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.codigoUsuario)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigoDistrito.nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditCliente", new { id = item.codigoUsuario }) |
+            @Html.ActionLink("Delete", "DeleteCliente", new { id = item.codigoUsuario })
+        </td>
+    </tr>
+    }
+</table>
+

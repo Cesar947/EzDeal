@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Entity.Solicitud>
+@{
+    ViewBag.Title = "IndexSolicitud";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index Resena</h2>
+
+<p>
+    @Html.ActionLink("Nueva Solicitud", "Create Solicitud")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoSolicitud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoPublicacion.titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoCliente.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mensajeSolicitud)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelIem => item.codigoSolicitud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigoPublicacion.titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigoCliente.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mensajeSolicitud)
+        </td>
+       
+    </tr>
+    }
+</table>
+

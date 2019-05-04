@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Entity.Resena>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index Resena</h2>
+
+<p>
+    @Html.ActionLink("Nueva Resena", "CreateResena")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoResena)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoPublicacion.titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoCliente.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codigoCliente.apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contenido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.valoracion)
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigoResena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigoPublicacion.titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigoCliente.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.codigoCliente.apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contenido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.valoracion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditResena", new { id = item.codigoResena }) |
+            @Html.ActionLink("Delete", "DeleteResena", new { id = item.codigoResena })
+        </td>    
+    </tr>
+    }
+</table>
+
