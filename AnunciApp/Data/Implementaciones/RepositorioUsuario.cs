@@ -22,7 +22,7 @@ namespace Data.Implementacion
                     conexion.Open();
 
 
-                    var query = new SqlCommand("INSERT INTO Usuario Values(@email, @contrasena, @nombre, @apellidos," +
+                    var query = new SqlCommand("INSERT INTO Usuario Values( @contrasena,@email, @nombre, @apellidos," +
                         "@url_contacto, @telefono, @codigoDistrito, @rol)", conexion);
                     query.Parameters.AddWithValue("@email", nuevoAnunciante.email);
                     query.Parameters.AddWithValue("@contrasena", nuevoAnunciante.contrasena);

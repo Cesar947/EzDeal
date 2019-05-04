@@ -31,6 +31,8 @@ namespace Entity
         [DisplayName("Servicio")]
         public Servicio codigoServicio { get; set; }
 
+
+        public int estaHabilitado { get; set; }
     }
 }
 

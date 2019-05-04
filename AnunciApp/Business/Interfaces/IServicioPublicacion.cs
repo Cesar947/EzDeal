@@ -9,5 +9,6 @@ namespace Business.InterfacesServicio
 {
     public interface IServicioPublicacion : IServicioCRUD<Publicacion>
     {
+        List<Publicacion> findByServicio(int codigo_servicio);
     }
 }

@@ -9,6 +9,6 @@ namespace Data.Interfaces
 {
     public interface IRepositorioPublicacion : IRepositorioCRUD<Publicacion>
     {
-       
+        List<Publicacion> findByServicio(int codigo_servicio);
     }
 }

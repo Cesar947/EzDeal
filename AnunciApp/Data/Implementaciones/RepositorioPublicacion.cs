@@ -21,12 +21,13 @@ namespace Data.Implementacion
                 {
                     conexion.Open();
 
-                    var query = new SqlCommand("Insert into Publicacion values (@publicista, @titulo, @descripcion, @costo, @servicio)", conexion);
+                    var query = new SqlCommand("Insert into Publicacion values (@publicista, @titulo, @descripcion, @costo, @servicio, @estaHabilitado)", conexion);
                     query.Parameters.AddWithValue("@publicista", t.codigoPublicista.codigoUsuario);
                     query.Parameters.AddWithValue("@titulo", t.titulo);
                     query.Parameters.AddWithValue("@descripcion", t.descripcion);
                     query.Parameters.AddWithValue("@costo", t.costoServicio);
                     query.Parameters.AddWithValue("@servicio", t.codigoServicio.codigoServicio);
+                    query.Parameters.AddWithValue("@estaHabilitado", 1);
                     query.ExecuteNonQuery();
 
                     rpta = true;
@@ -88,6 +89,52 @@ namespace Data.Implementacion
                 throw;
             }
             return rpta;
+        }
+
+        
+        public List<Publicacion> findByServicio(int codigo_servicio)
+        {
+            var publicaciones = new List<Publicacion>();
+            try
+            {
+                using (var conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["servicioUPCDB"].ToString()))
+                {
+                    conexion.Open();
+
+                    var query = new SqlCommand("Select p.codigo_publicacion as Codigo, u.nombre as nombre_publicista, p.codigo_publicista, p.titulo, p.descripcion as descripcion, p.costo_servicio, p.codigo_servicio, s.nombre as servicio"
+                    + "FROM Publicacion p join Usuario u on p.codigo_publicista = u.codigo_usuario join Servicio s on s.codigo_servicio = p.codigo_Servicio"
+                    + "where s.codigo_servicio = @codigo_servicio", conexion);
+
+                    query.Parameters.AddWithValue("@codigo_servicio", codigo_servicio);
+                    using (var dr = query.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            var publicacion = new Publicacion();
+                            var usuario = new Usuario();
+                            var servicio = new Servicio();
+
+                            publicacion.codigoPublicacion = Convert.ToInt32(dr["codigo_publicacion"]);
+                            publicacion.codigoPublicista = usuario;
+                            publicacion.codigoPublicista.codigoUsuario = Convert.ToInt32(dr["codigo_publicista"]);
+                            publicacion.codigoPublicista.nombre = dr["nombre_publicista"].ToString();
+                            publicacion.titulo = dr["titulo"].ToString();
+                            publicacion.descripcion = dr["descripcion"].ToString();
+                            publicacion.costoServicio = Convert.ToInt32(dr["costo_servicio"]);
+                            publicacion.codigoServicio = servicio;
+                            publicacion.codigoServicio.codigoServicio = codigo_servicio;
+                            publicacion.codigoServicio.nombre = dr["servicio"].ToString();
+
+                            publicaciones.Add(publicacion);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return publicaciones;
         }
         public List<Publicacion> Listar()
         {

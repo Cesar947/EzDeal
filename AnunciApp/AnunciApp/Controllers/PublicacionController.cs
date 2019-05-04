@@ -29,6 +29,11 @@ namespace webAppServicios.Controllers
             Publicacion publicacion = servicioPublicacion.ListarPorId(id);
             return View(publicacion);
         }
+        public ActionResult FiltradoPorServicio(int codigo_servicio)
+        {
+
+            return View(servicioPublicacion.findByServicio(codigo_servicio));
+        }
 
         public ActionResult CreatePublicacion()
         {
@@ -36,6 +41,11 @@ namespace webAppServicios.Controllers
             return View();
         }
 
+        public ActionResult Solicitar()
+        {
+            return View("~/Views/Solicitud/CreateSolicitud.cshtml");
+        }
+       
         
         public ActionResult EditPublicacion(int id)
         {

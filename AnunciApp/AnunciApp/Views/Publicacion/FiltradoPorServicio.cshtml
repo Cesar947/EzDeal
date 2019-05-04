@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Entity.Publicacion>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "FiltradoPorServicio";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,16 +9,9 @@
 <p>
     @Html.ActionLink("Nueva Publicacion", "CreatePublicacion")
 </p>
-
-<div class="form-group">
-    @Html.DisplayNameFor(model => model.codigoServicio)
-    <div class="col-md-10">
-        @Html.DropDownListFor(model => model.codigoServicio.codigoServicio,
-       new SelectList(ViewBag.servicio, "codigoServicio", "nombre"), "---Select---","")
-        @Html.ValidationMessageFor(model => model.codigoServicio.codigoServicio, "", new { @class = "text-danger" })
-    </div>
-</div>
-
+<p>
+    @Html.ActionLink("Quitar filtros", "Index")
+</p>
 <table class="table">
     <tr>
         <td>
@@ -62,8 +55,8 @@
                 @Html.DisplayFor(modelItem => item.codigoServicio.nombre)
             </td>
             <td>
-                @Html.ActionLink("Editar", "EditPublicacion", new { id = item.codigoPublicacion }) |
-                @Html.ActionLink("Eliminar", "DeletePublicacion", new { id = item.codigoPublicacion })
+                @Html.ActionLink("Edit", "EditPublicacion", new { id = item.codigoPublicacion }) |
+                @Html.ActionLink("Delete", "DeletePublicacion", new { id = item.codigoPublicacion })
                 @Html.ActionLink("Solicitar", "Solicitar", new { })
             </td>
         </tr>

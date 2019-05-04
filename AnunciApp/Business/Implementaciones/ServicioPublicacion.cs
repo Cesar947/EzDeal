@@ -33,5 +33,9 @@ namespace Business.Implementaciones
         {
             return repositorioPublicacion.ListarPorId(id);
         }
+        public List<Publicacion> findByServicio(int codigo_servicio)
+        {
+            return repositorioPublicacion.findByServicio(codigo_servicio);
+        }
     }
 }
